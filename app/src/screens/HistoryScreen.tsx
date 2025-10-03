@@ -22,14 +22,14 @@ const HistoryScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'Histor
           onPress={() => navigation.goBack()}
           accessibilityRole="button"
         >
-          {t('check.button')}
+          {t('common.back')}
         </Text>
       </View>
       <HistoryList data={history} locale={i18n.language} />
       {history.length > 0 && (
         <View className="mt-8">
           <GradientButton
-            title={i18n.language === 'pt-BR' ? 'Limpar histórico' : 'Clear history'}
+            title={t('history.clear')}
             onPress={clearHistory}
             colors={['#1F2937', '#111827']}
           />

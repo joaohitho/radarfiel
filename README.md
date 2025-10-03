@@ -31,9 +31,15 @@ backend/
 docs/
 ```
 
+## Pré-requisitos
+
+- Node.js 18 ou superior (recomendado usar `nvm use 18`)
+- npm 9+ ou pnpm/yarn compatíveis
+- Conta Expo (opcional para builds EAS)
+
 ## Como executar localmente
 
-1. Instale as dependências:
+1. Instale as dependências do projeto Expo:
 
    ```bash
    cd app
@@ -47,6 +53,8 @@ docs/
    ```
 
 3. Escaneie o QR Code com o aplicativo Expo Go (Android/iOS) ou use um emulador (`npm run android` / `npm run ios`).
+
+Se encontrar problemas ao instalar dependências, verifique a versão do Node e limpe o cache do npm (`npm cache clean --force`) antes de tentar novamente.
 
 ## Builds com Expo EAS
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import GradientButton from '../components/GradientButton';
@@ -16,22 +16,29 @@ const loadingAnimation = require('../assets/lottie/loading.json');
 const CheckAccountScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'CheckAccount'>> = ({
   navigation
 }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [selectedApp, setSelectedApp] = useState(APP_OPTIONS[0]);
   const { checkAccount, isLoading } = useCheckAccount();
 
   const handleSubmit = async () => {
-    if (!username.trim()) {
+    const trimmed = username.trim();
+    if (!trimmed) {
+      Alert.alert(t('check.errorTitle'), t('check.emptyError'), [{ text: t('common.ok') }]);
       return;
     }
-    const normalized = username.trim();
-    const status = await checkAccount(selectedApp.id, normalized);
-    navigation.navigate('Result', {
-      status,
-      username: normalized,
-      app: t(selectedApp.translationKey)
-    });
+
+    try {
+      const normalized = trimmed;
+      const status = await checkAccount(selectedApp.id, normalized);
+      navigation.navigate('Result', {
+        status,
+        username: normalized,
+        app: t(selectedApp.translationKey)
+      });
+    } catch {
+      Alert.alert(t('check.errorTitle'), t('check.genericError'), [{ text: t('common.ok') }]);
+    }
   };
 
   return (
@@ -80,9 +87,7 @@ const CheckAccountScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'C
           {isLoading ? (
             <View className="h-16 items-center justify-center rounded-4xl border border-[#1F2A44] bg-[#12172A]">
               <LottieWrapper source={loadingAnimation} style={{ width: 120, height: 120 }} />
-              <Text className="absolute text-sm text-[#D1D5DB] font-inter">
-                {i18n.language === 'pt-BR' ? 'Consultando...' : 'Checking...'}
-              </Text>
+              <Text className="absolute text-sm text-[#D1D5DB] font-inter">{t('check.loading')}</Text>
             </View>
           ) : (
             <GradientButton title={t('check.button')} onPress={handleSubmit} />

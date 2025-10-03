@@ -24,6 +24,10 @@ export const useCheckAccount = (): UseCheckAccountResult => {
         setStatus(result);
         addEntry({ app, status: result, username });
         return result;
+      } catch (error) {
+        throw error instanceof Error
+          ? error
+          : new Error('Unexpected error while checking the account.');
       } finally {
         setIsLoading(false);
       }

@@ -8,6 +8,9 @@ import StatusBadge from '../components/StatusBadge';
 import GradientButton from '../components/GradientButton';
 import LottieWrapper from '../components/LottieWrapper';
 import { RootStackParamList } from '../../App';
+import { styled } from 'nativewind';
+
+const Gradient = styled(LinearGradient);
 
 const successAnimation = require('../assets/lottie/success.json');
 const failureAnimation = require('../assets/lottie/failure.json');
@@ -30,7 +33,7 @@ const ResultScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'Result'
   return (
     <ScreenContainer className="pb-12 pt-16">
       <View className="items-center">
-        <LinearGradient
+        <Gradient
           colors={isActive ? ['rgba(52,211,153,0.25)', 'rgba(11,15,26,0.8)'] : ['rgba(248,113,113,0.25)', 'rgba(11,15,26,0.8)']}
           className="mb-10 h-64 w-64 items-center justify-center rounded-full"
         >
@@ -39,7 +42,7 @@ const ResultScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'Result'
             style={{ width: 220, height: 220 }}
             loop={false}
           />
-        </LinearGradient>
+        </Gradient>
         <Text className="text-lg text-[#9CA3AF] font-inter">{app}</Text>
         <Text className="mt-2 text-3xl font-semibold text-white font-inter">{username}</Text>
         <View className="mt-6">

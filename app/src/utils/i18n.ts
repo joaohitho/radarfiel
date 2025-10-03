@@ -15,7 +15,11 @@ const resources = {
         placeholder: 'Nome de usuário ou e-mail',
         selectLabel: 'Escolha o app',
         button: 'Verificar',
-        history: 'Histórico'
+        history: 'Histórico',
+        emptyError: 'Informe um usuário ou e-mail para verificar.',
+        errorTitle: 'Não foi possível verificar',
+        genericError: 'Tente novamente em instantes.',
+        loading: 'Consultando...'
       },
       result: {
         active: 'Ativa',
@@ -25,7 +29,8 @@ const resources = {
       },
       history: {
         title: 'Últimas verificações',
-        empty: 'Nenhuma verificação até agora.'
+        empty: 'Nenhuma verificação até agora.',
+        clear: 'Limpar histórico'
       },
       apps: {
         tinder: 'Tinder',
@@ -34,6 +39,10 @@ const resources = {
         eden: 'Eden',
         salt: 'SALT',
         quimicaCrista: 'Química Cristã'
+      },
+      common: {
+        back: 'Voltar',
+        ok: 'Ok'
       }
     }
   },
@@ -49,7 +58,11 @@ const resources = {
         placeholder: 'Username or email',
         selectLabel: 'Choose the app',
         button: 'Check',
-        history: 'History'
+        history: 'History',
+        emptyError: 'Enter a username or email to continue.',
+        errorTitle: 'Unable to verify now',
+        genericError: 'Please try again in a moment.',
+        loading: 'Checking...'
       },
       result: {
         active: 'Active',
@@ -59,7 +72,8 @@ const resources = {
       },
       history: {
         title: 'Recent checks',
-        empty: 'No checks yet.'
+        empty: 'No checks yet.',
+        clear: 'Clear history'
       },
       apps: {
         tinder: 'Tinder',
@@ -68,6 +82,10 @@ const resources = {
         eden: 'Eden',
         salt: 'SALT',
         quimicaCrista: 'Christian Match'
+      },
+      common: {
+        back: 'Back',
+        ok: 'Ok'
       }
     }
   }
