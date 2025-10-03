@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: RadarFiel Mock API
+  version: '1.0.0'
+  description: |
+    Mock API specification for checking dating app account status.
+servers:
+  - url: https://mock.radarfiel.dev
+paths:
+  /accounts/{app}/status:
+    get:
+      summary: Retrieve account status for a given username and app
+      parameters:
+        - in: path
+          name: app
+          required: true
+          schema:
+            type: string
+            enum: [tinder, bumble, badoo, eden, salt, quimicaCrista]
+        - in: query
+          name: username
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account status successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  app:
+                    type: string
+                  status:
+                    type: string
+                    enum: ['Ativa', 'Não encontrada']
+                  checkedAt:
+                    type: string
+                    format: date-time
+              examples:
+                active:
+                  value:
+                    username: maria.active
+                    app: tinder
+                    status: Ativa
+                    checkedAt: '2024-05-02T18:30:00Z'
+                inactive:
+                  value:
+                    username: unknown
+                    app: bumble
+                    status: Não encontrada
+                    checkedAt: '2024-05-02T18:30:00Z'
+        '400':
+          description: Invalid parameters
+        '404':
+          description: App not supported
